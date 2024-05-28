@@ -1,0 +1,24 @@
+﻿@model WasteManagement.Models.WasteBin
+@{
+    ViewData["Title"] = "Create Waste Bin";
+}
+
+<h1>Create Waste Bin</h1>
+
+<form asp-action="Create" method="post" class="form-horizontal">
+    <div class="form-group">
+        <label asp-for="Location" class="control-label"></label>
+        <input asp-for="Location" class="form-control" />
+        <span asp-validation-for="Location" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="FillLevel" class="control-label"></label>
+        <input asp-for="FillLevel" class="form-control" />
+        <span asp-validation-for="FillLevel" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+        <a href="@Url.Action("Index")" class="btn btn-secondary">Back to List</a>
+    </div>
+
+</form>

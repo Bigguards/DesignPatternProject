@@ -1,0 +1,74 @@
+﻿@model WasteManagement.Models.WasteBin
+
+@{
+    ViewData["Title"] = "Waste Bin Details";
+}
+
+<h1>Waste Bin Details</h1>
+
+<div>
+    <h4>Waste Bin</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Location
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Location
+        </dd>
+        <dt class="col-sm-2">
+            Fill Level
+        </dt>
+        <dd class="col-sm-10">
+            @Model.FillLevel%
+        </dd>
+    </dl>
+</div>
+
+<!-- Chart Container -->
+<div>
+    <canvas id="fillLevelChart" width="400" height="200"></canvas>
+</div>
+
+<div>
+    <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-warning">Edit</a>
+    <a href="@Url.Action("Index")" class="btn btn-secondary">Back to List</a>
+</div>
+
+<!-- Include Chart.js from a CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    // JavaScript to create the chart
+    var ctx = document.getElementById('fillLevelChart').getContext('2d');
+    var fillLevel = @Model.FillLevel;
+    var remainingLevel = 100 - fillLevel;
+    var chart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Fill Level', 'Remaining'],
+            datasets: [{
+                label: 'Waste Bin Fill Level',
+                data: [fillLevel, remainingLevel],
+                backgroundColor: ['#ff6384', '#36a2eb'],
+                hoverBackgroundColor: ['#ff6384', '#36a2eb']
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return tooltipItem.label + ': ' + tooltipItem.raw + '%';
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>

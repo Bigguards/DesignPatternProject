@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1 class="display-4">Welcome to Smart City Waste Management</h1>
+    <p class="lead">Efficiently managing waste bins in the city.</p>
+    <hr class="my-4">
+    <p>Use the navigation bar to manage waste bins.</p>
+    <a class="btn btn-primary btn-lg" href="@Url.Action("Index", "WasteBins")" role="button">Manage Waste Bins</a>
+    <a class="btn btn-primary btn-lg" href="@Url.Action("Index", "RouteManagement")" role="button">Route Managment</a>
+</div>

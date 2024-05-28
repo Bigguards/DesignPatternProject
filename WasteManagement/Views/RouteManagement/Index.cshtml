@@ -1,0 +1,35 @@
+﻿@model IEnumerable<WasteManagement.Models.WasteCollection>
+
+@{
+    ViewData["Title"] = "Route Management";
+}
+
+<h1>Route Management</h1>
+
+<p>
+    <a href="@Url.Action("Create")" class="btn btn-primary">Add New Route</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Collection Time</th>
+            <th>Waste Bin ID</th>
+            <th>Waste Bin Locaiton</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CollectionTime</td>
+                <td>@item.WasteBinId</td>
+                <td>@item.WasteBin?.Location</td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-sm btn-info">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

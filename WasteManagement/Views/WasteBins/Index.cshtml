@@ -1,0 +1,35 @@
+﻿@model IEnumerable<WasteManagement.Models.WasteBin>
+
+@{
+    ViewData["Title"] = "Waste Bins";
+}
+
+<h1>Waste Bins</h1>
+
+<p>
+    <a href="@Url.Action("Create")" class="btn btn-primary">Add Waste Bin</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Location</th>
+            <th>Fill Level (%)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Location</td>
+                <td>@item.FillLevel</td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-sm btn-info">Details</a>
+                    <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
